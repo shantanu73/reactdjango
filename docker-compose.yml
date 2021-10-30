@@ -1,0 +1,26 @@
+version: "3.2"
+services:
+  backend-service:
+    hostname: 'backend-service'
+    container_name: 'backend-service'
+    build: ./demoproject
+    volumes:
+        - ./demoproject:/demoproject
+    ports:
+        - 8000:8000
+    networks:
+        - common_network
+  frontend-service:
+    hostname: 'frontend-service'
+    container_name: 'frontend-service'
+    build: ./frontend
+    volumes:
+      - ./frontend:/frontend
+    ports:
+      - 3000:3000
+    networks:
+      - common_network
+
+networks:
+  common_network:
+    driver: bridge
